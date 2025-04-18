@@ -1,0 +1,97 @@
+/* Ensure html and body take full height */
+html, body {
+    height: 100%; /* Ensure full screen height */
+    margin: 0;    /* Remove default margin */
+    padding: 0;   /* Remove default padding */
+  }
+  
+  /* BookmarkPage styles */
+  .bookmark-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%; /* Ensure it takes up full available height */
+    padding: 0;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Fix the header at the top */
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 30px; /* Add space at the top */
+    flex-shrink: 0;  /* Prevent the header from shrinking */
+    position: sticky;
+    top: 0; /* Fix at the top */
+    background-color: #fff; /* Ensure header stays visible */
+    z-index: 1; /* Ensure it stays above content */
+    padding: 16px; /* Padding for header */
+  }
+  
+  /* The grid takes available space and is scrollable */
+  .grid {
+    flex-grow: 1; /* Allow grid to take available space */
+    overflow-y: auto; /* Make grid scrollable if content overflows */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding-bottom: 70px; /* Prevent overlap with BottomNav */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    max-height: calc(100vh - 150px); /* Allow the grid to scroll by limiting its height */
+  }
+  
+  /* Card styles */
+  .card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 220px;
+    position: relative;
+    text-align: center;
+  }
+  
+  .card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .card h3 {
+    font-size: 18px;
+    margin: 8px 0;
+    color: #333;
+  }
+  
+  .card p {
+    color: #777;
+    font-size: 14px;
+    margin: 4px 0;
+  }
+  
+  .card .icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 18px;
+    color: #007bff;
+  }
+  
+  .card .icon:hover {
+    color: #0056b3;
+  }
+  
+  /* Bottom navigation should stay fixed at the bottom */
+  .bottom-nav-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10; /* Ensure it's on top */
+    background-color: white;
+    padding: 10px 0;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+  }
+  

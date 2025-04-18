@@ -1,0 +1,240 @@
+.recipe-page-container {
+  padding: 22px;
+  font-family: 'SF Pro', 'Helvetica', 'Myriad', 'Segoe UI', 'Helvetica Neue', sans-serif;
+  color: #333;
+  height: 100vh;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: linear-gradient(135deg, #eafaf1, #fdfff6);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.recipe-page-header {
+  font-size: 35px;
+  color: #fff;
+  font-weight: 740;
+  margin-top: 42px;
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: -0.5px;
+  background: linear-gradient(to right, #A5D6A7, #81C784);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+.recipe-page-description {
+  font-size: 14px;
+  color: #484a48;
+  margin-bottom: 16px;
+  padding: 0 15px;
+  text-align: center;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: -0.33px;
+}
+
+.recipe-page-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
+
+.detail-box {
+  background: var(--color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  padding: 8px 12px;
+  width: 23%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+
+.detail-box:hover {
+  background-color: #f1f1f1;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.detail-title {
+  font-size: 10px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 4px;
+}
+
+.detail-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  margin-top: 2px;
+}
+
+@media (max-width: 360px) {
+  .details {
+    flex-direction: row;
+    gap: 8px;
+    justify-content: space-between;
+  }
+
+  .detail-box {
+    width: 22%;
+    padding: 8px 10px;
+  }
+
+  .detail-title {
+    font-size: 9px;
+  }
+
+  .detail-value {
+    font-size: 11px;
+  }
+}
+
+
+.ingredients-section {
+  margin-top: 20px;
+}
+
+.section-title {
+  font-size: 20px;
+  color: #ff4081;
+  margin-bottom: 10px;
+}
+
+.ingredients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/*.ingredient-item {*/
+/*  background-color: #c8e6c9;*/
+/*  padding: 10px;*/
+/*  border-radius: 5px;*/
+/*  font-size: 16px;*/
+/*}*/
+.ingredient-item {
+  background-color: #d1f0d3;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ingredient-item:hover {
+  background-color: #b8e3b0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.ingredient-quantity {
+  font-weight: bold;
+  color: #2d6a3f;
+  font-size: 18px;
+}
+
+.ingredient-name {
+  font-weight: normal;
+  color: #3b6c48;
+  font-size: 16px;
+}
+
+.cook-button {
+  background-color: #FF7B7B;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cook-button:hover {
+  background-color: #FF6F6F;
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.cook-button i {
+  font-size: 22px;
+}
+
+.cook-button svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+.back-button {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 28px;
+  color: #1DB954;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+  z-index: 100;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #388E3C;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}

@@ -1,0 +1,756 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1.5rem calc(4rem + 1.5rem);
+    margin: 0 auto;
+    background-color: #ffffff;
+    min-height: 100vh;
+    height: calc(100vh - 83px - 2rem);
+    width: 100vw;
+    max-width: 430px;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 1.2em;
+    box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.header {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.title {
+    font-family: 'SF Pro Display', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ff7043;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+    font-family: 'SF Pro Text', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #666;
+    margin-bottom: 0.2rem;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border: 2px solid #34c759;
+    border-radius: 50px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-sizing: border-box;
+    height: 3rem;
+}
+
+.search-wrapper:focus-within {
+    box-shadow: 0 0 15px rgba(52, 199, 89, 0.5);
+    transform: scale(1.02);
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: transparent;
+    padding: 0 1rem;
+    color: #333;
+    transition: font-size 0.3s ease;
+    height: 100%;
+}
+
+.search-input:focus {
+    font-size: 1.1rem;
+}
+
+.search-input::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+    font-style: italic;
+}
+
+.search-icon {
+    margin-left: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: #34c759;
+    transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.search-wrapper:focus-within .search-icon {
+    transform: scale(1.2);
+    fill: #007a33;
+}
+
+.clear-button {
+    position: absolute;
+    right: clamp(0.8rem, 2%, 1rem);
+    top: calc(-50% + 0.75rem);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clear-button:hover {
+    background-color: rgba(255, 69, 58, 0.2);
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 69, 58, 0.4);
+}
+
+.clear-button svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: #34c759;
+    transition: fill 0.3s ease, transform 0.3s ease;
+}
+
+.clear-button:hover svg {
+    fill: #ff453a;
+    transform: scale(1.2);
+}
+
+@media (max-width: 430px) {
+    .search-wrapper {
+        height: 2.8rem;
+        padding: 0.7rem 0.9rem;
+    }
+
+    .search-input {
+        font-size: 0.95rem;
+    }
+
+    .search-icon, .clear-button svg {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+}
+
+@media (max-width: 393px) {
+    .search-wrapper {
+        height: 2.8rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .search-input {
+        font-size: 0.95rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .search-icon {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+    .clear-button svg {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .search-wrapper {
+        height: 2.6rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .search-input {
+        font-size: 0.9rem;
+    }
+
+    .search-icon, .clear-button svg {
+        width: 1rem;
+        height: 1rem;
+    }
+}
+
+.selectedIngredientsContainer {
+    background: linear-gradient(135deg, #ffe6e1, #fffaf2);
+    padding: 1rem;
+    border-radius: 0.8rem;
+    margin: 0.5rem 0 0.75rem;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    animation: fadeIn 0.5s ease;
+    height: auto;
+}
+
+.selectedIngredientsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 0.5rem;
+    box-sizing: border-box;
+    margin-bottom: 0.75rem;
+    box-sizing: border-box;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.selectedIngredientItem {
+    background: linear-gradient(135deg, #ffa585, #ff7043);
+    color: #fff;
+    padding: 0.5rem 0.8rem;
+    border-radius: 1.5em;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(19, 2, 1, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.selectedIngredientItem:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 5px 10px rgba(153, 45, 45, 0.3);
+    outline: 1px solid #ff6f6f;
+}
+
+.selectedIngredientItem:nth-child(1) {
+    background: linear-gradient(135deg, #f8c6b5, #f4a4b3);
+}
+
+.selectedIngredientItem:nth-child(1) .removeButton {
+    color: #f4a4b3;
+}
+
+.selectedIngredientItem:nth-child(2) {
+    background: linear-gradient(135deg, #87ceeb, #4682b4);
+}
+
+.selectedIngredientItem:nth-child(2) .removeButton {
+    color: #4682b4;
+}
+
+.selectedIngredientItem:nth-child(3) {
+    background: linear-gradient(135deg, #d1b0ff, #b39ddb);
+}
+
+.selectedIngredientItem:nth-child(3) .removeButton {
+    color: #b39ddb;
+}
+
+.selectedIngredientItem:nth-child(4) {
+    background: linear-gradient(135deg, #a0e0d1, #80c8c2);
+}
+
+.selectedIngredientItem:nth-child(4) .removeButton {
+    color: #80c8c2;
+}
+
+.selectedIngredientItem:nth-child(5) {
+    background: linear-gradient(135deg, #ffb4a2, #ffcc99);
+}
+
+.selectedIngredientItem:nth-child(5) .removeButton {
+    color: #ffcc99;
+}
+
+.removeButton {
+    background-color: #fff;
+    color: #ff7043;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.removeButton:hover {
+    background-color: #FF6F6F;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.5);
+    outline: 1px solid #FF6F6F;
+}
+
+.category-section {
+    margin-bottom: 20px;
+}
+
+.sectionTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.horizontal-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 8px 0;
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+    height: 0.375rem;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}
+
+.ingredientCard {
+    touch-action: manipulation;
+    overflow: visible;
+    border-radius: 12px;
+    text-align: center;
+    width: 140px;
+    flex-shrink: 0;
+    padding: 14px;
+    padding-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    background-color: var(--ingredient-color);
+    color: var(--ingredient-text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+    will-change: transform, box-shadow, background-color, filter, opacity;
+}
+
+.ingredientCard:hover {
+    transform: translateY(-5px) scale(1.0);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background-color: var(--ingredient-hover-color);
+    filter: brightness(1.2) saturate(1.1);
+}
+
+.ingredientCard.selected {
+    filter: grayscale(50%) brightness(0.85);
+    background-color: var(--ingredient-selected-color);
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    opacity: 0.9;
+}
+
+.ingredientCard:hover.selected {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    filter: grayscale(40%) brightness(0.95);
+    background: linear-gradient(135deg, var(--ingredient-selected-color) 40%, var(--ingredient-hover-color) 100%);
+    opacity: 0.95;
+}
+
+.ingredientImage {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    object-fit: contain;
+    transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+.ingredientCard:hover .ingredientImage {
+    transform: scale(1.2);
+}
+
+.ingredientCard.selected .ingredientImage {
+    transform: scale(0.90);
+    filter: grayscale(70%) brightness(0.75);
+    opacity: 0.85;
+}
+
+.ingredientCard:hover.selected .ingredientImage {
+    transform: scale(1);
+    filter: grayscale(40%) brightness(0.95);
+    opacity: 0.9;
+}
+
+.ingredientName {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--ingredient-text-color);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+    opacity: 1;
+}
+
+.ingredientType {
+    font-size: 0.875rem;
+    color: var(--ingredient-text-color);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    transition: color 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+.ingredientCard:hover .ingredientName {
+    transform: translateY(-2px);
+    font-size: 1.10rem;
+    color: var(--ingredient-text-color);
+    filter: saturate(0.5) contrast(1.5);
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.ingredientCard.selected .ingredientName {
+    font-size: 0.95rem;
+    color: var(--ingredient-text-color);
+    filter: grayscale(30%) brightness(0.8);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.ingredientCard:hover.selected .ingredientName {
+    font-size: 1rem;
+    color: var(--ingredient-text-color);
+    filter: contrast(1.0);
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.onion {
+    --ingredient-color: #ab4e5e;
+    --ingredient-hover-color: #c8586f;
+    --ingredient-selected-color: #894452;
+    --ingredient-text-color: #ffe6e6;
+}
+
+.garlic {
+    --ingredient-color: #C1B99B;
+    --ingredient-hover-color: #D3CEB9;
+    --ingredient-selected-color: #b8b17f;
+    --ingredient-text-color: #f7f3e1;
+}
+
+.ginger {
+    --ingredient-color: #f2d8b8;
+    --ingredient-hover-color: #f7e0c6;
+    --ingredient-selected-color: #e8c99f;
+    --ingredient-text-color: #654436;
+}
+
+.greenOnions {
+    --ingredient-color: #c1e089;
+    --ingredient-hover-color: #d3f29b;
+    --ingredient-selected-color: #b8d77b;
+    --ingredient-text-color: #293a1a;
+
+}
+
+.saltPepper {
+    --ingredient-color: #4a4a4a;
+    --ingredient-hover-color: #606060;
+    --ingredient-selected-color: #3e3e3e;
+    --ingredient-text-color: #f2f2f2;
+}
+
+.redChilli {
+    --ingredient-color: #c73e29;
+    --ingredient-hover-color: #d94f38;
+    --ingredient-selected-color: #a62d21;
+    --ingredient-text-color: #ffd8d3;
+}
+
+.soySauce {
+    --ingredient-color: #281d1a;
+    --ingredient-hover-color: #3b2c27;
+    --ingredient-selected-color: #3a2a27;
+    --ingredient-text-color: #d4c6bc;
+}
+
+.sugar {
+    --ingredient-color: #fff;
+    --ingredient-hover-color: #f7f7f7;
+    --ingredient-selected-color: #e8e8e8;
+    --ingredient-text-color: #4a4a4a;
+}
+
+.vanillaExtract {
+    --ingredient-color: #302926;
+    --ingredient-hover-color: #3f3a35;
+    --ingredient-selected-color: #2f2a26;
+    --ingredient-text-color: #f2f2f2;
+}
+
+.sriracha {
+    --ingredient-color: #881504;
+    --ingredient-hover-color: #a32008;
+    --ingredient-selected-color: #6d0f03;
+    --ingredient-text-color: #ffebe4;
+}
+
+.cornstarch {
+    --ingredient-color: #f2d8b8;
+    --ingredient-hover-color: #f7e0c6;
+    --ingredient-selected-color: #e8c99f;
+    --ingredient-text-color: #654436;
+}
+
+
+.oliveOil {
+    --ingredient-color: #606c38;
+    --ingredient-hover-color: #738b46;
+    --ingredient-selected-color: #505c2d;
+    --ingredient-text-color: #f5f8e6;
+}
+
+.bakingPowder {
+    --ingredient-color: #fefefe;
+    --ingredient-hover-color: #f7f7f7;
+    --ingredient-selected-color: #e8e8e8;
+    --ingredient-text-color: #8a7c6c;
+}
+
+.tomato {
+    --ingredient-color: #d14133;
+    --ingredient-hover-color: #e15747;
+    --ingredient-selected-color: #b7322b;
+    --ingredient-text-color: #ffe8e6;
+}
+
+.avocado {
+    --ingredient-color: #a7c957;
+    --ingredient-hover-color: #bddc6f;
+    --ingredient-selected-color: #92b046;
+    --ingredient-text-color: #293a1a;
+}
+
+.asparagus {
+    --ingredient-color: #8f9c45;
+    --ingredient-hover-color: #a4b05a;
+    --ingredient-selected-color: #7a853b;
+    --ingredient-text-color: #f5f8e6;
+}
+
+.potato {
+    --ingredient-color: #e0c080;
+    --ingredient-hover-color: #edd197;
+    --ingredient-selected-color: #cda970;
+    --ingredient-text-color: #4f3e24;
+}
+
+.kale {
+    --ingredient-color: #5a7247;
+    --ingredient-hover-color: #6b8754;
+    --ingredient-selected-color: #3f5a35;
+    --ingredient-text-color: #232d1c;
+}
+.carrot {
+    --ingredient-color: #e98951;
+    --ingredient-hover-color: #f29a65;
+    --ingredient-selected-color: #d17445;
+    --ingredient-text-color: #fff4ec;
+}
+
+.lemon {
+    --ingredient-color: #f1c232;
+    --ingredient-hover-color: #f8d04b;
+    --ingredient-selected-color: #d4a823;
+    --ingredient-text-color: #f3f1da;
+}
+
+.rice {
+    --ingredient-color: #c7b090;
+    --ingredient-hover-color: #b49b70;
+    --ingredient-selected-color: #9e8a62;
+    --ingredient-text-color: #fff4e9;
+}
+
+.spaghetti {
+    --ingredient-color: #fbd78b;
+    --ingredient-hover-color: #AF9661;
+    --ingredient-selected-color: #e8c395;
+    --ingredient-text-color: #864d23;
+}
+
+.tortilla {
+    --ingredient-color: #efdba7;
+    --ingredient-hover-color: #f6e5b4;
+    --ingredient-selected-color: #d9c08a;
+    --ingredient-text-color: #9e7a1c;
+}
+
+.noodles {
+    --ingredient-color: #f6cdac;
+    --ingredient-hover-color: #fbd8b9;
+    --ingredient-selected-color: #e8b08a;
+    --ingredient-text-color: #917157;
+}
+
+.lentils {
+    --ingredient-color: #d68c50;
+    --ingredient-hover-color: #e39d6a;
+    --ingredient-selected-color: #c0763e;
+    --ingredient-text-color: #FCC9B0;
+}
+
+.almonds {
+    --ingredient-color: #d0a676;
+    --ingredient-hover-color: #e1b88a;
+    --ingredient-selected-color: #ba8e61;
+    --ingredient-text-color: #f6eac7;
+}
+
+.penne {
+    --ingredient-color: #e3cb9c;
+    --ingredient-hover-color: #f2c8a3;
+    --ingredient-selected-color: #c19650;
+    --ingredient-text-color: #5f3a1d;
+}
+
+.walnuts {
+    --ingredient-color: #c4a287;
+    --ingredient-hover-color: #d6b39a;
+    --ingredient-selected-color: #ad8b6b;
+    --ingredient-text-color: #f7f3e1;
+}
+
+.flour {
+    --ingredient-color: #C4A287;
+    --ingredient-hover-color: #ab7a54;
+    --ingredient-selected-color: #896243;
+    --ingredient-text-color: #FEFBEC;
+}
+
+.eggs {
+    --ingredient-color: #d8864f;
+    --ingredient-hover-color: #d18c51;
+    --ingredient-selected-color: #c87a3e;
+    --ingredient-text-color: #ffe2c9;
+}
+
+.milk {
+    --ingredient-color: #fffaf6;
+    --ingredient-hover-color: #EEDBC7;
+    --ingredient-selected-color: #D6C5B3;
+    --ingredient-text-color: #7d7a77;
+}
+
+.butter {
+    --ingredient-color: #eecd8f;
+    --ingredient-hover-color: #f6dca3;
+    --ingredient-selected-color: #d9b86f;
+    --ingredient-text-color: #5f3a1d;
+}
+
+.almondMilk {
+    --ingredient-color: #8d5e34;
+    --ingredient-hover-color: #9f6d44;
+    --ingredient-selected-color: #774e2c;
+    --ingredient-text-color: #fff0e6;
+}
+
+.tofu {
+    --ingredient-color: #d3b994;
+    --ingredient-hover-color: #938167;
+    --ingredient-selected-color: #d6c6a8;
+    --ingredient-text-color: #4f4234;
+}
+
+.heavyCream {
+    --ingredient-color: #e8ddc6;
+    --ingredient-hover-color: #f0e6d0;
+    --ingredient-selected-color: #d4c9b0;
+    --ingredient-text-color: #624f3a;
+}
+
+
+.tempeh {
+    --ingredient-color: #b98e58;
+    --ingredient-hover-color: #c7a768;
+    --ingredient-selected-color: #9e7a4f;
+    --ingredient-text-color: #f4e6c2;
+}
+
+.parmesan {
+    --ingredient-color: #fae1a8;
+    --ingredient-hover-color: #f9e8b5;
+    --ingredient-selected-color: #e8d19b;
+    --ingredient-text-color: #c5aa70;
+}
+
+.actionButton {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #ff7043;
+    border: none;
+    border-radius: 32px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    box-shadow: 0 10px 20px rgba(255, 87, 34, 0.2);
+    font-family: 'Roboto', sans-serif;
+    transform: translateY(0);
+    margin-top: auto;
+    box-sizing: border-box;
+}
+
+.actionButton:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+.actionButton:hover:not(:disabled) {
+    background-color: #ff5722;
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgba(255, 87, 34, 0.3);
+    filter: brightness(1.05);
+}
+
+.actionButton:active:not(:disabled) {
+    background-color: #e64a19;
+    transform: translateY(-2px) scale(0.98);
+    box-shadow: 0 8px 16px rgba(230, 74, 25, 0.4);
+    transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.actionButton:focus {
+    outline: 3px solid rgba(255, 87, 34, 0.5);
+    outline-offset: 2px;
+}
